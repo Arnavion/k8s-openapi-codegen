@@ -98,3 +98,23 @@ impl crate::serde::Serialize for EventSource {
         crate::serde::ser::SerializeStruct::end(state)
     }
 }
+
+#[cfg(feature = "schema")]
+impl crate::Schema for EventSource {
+    fn schema() -> serde_json::Value {
+        serde_json::json!({
+          "description": "EventSource contains information for an event.",
+          "properties": {
+            "component": {
+              "description": "Component from which the event is generated.",
+              "type": "string"
+            },
+            "host": {
+              "description": "Node name on which the event is generated.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        })
+    }
+}

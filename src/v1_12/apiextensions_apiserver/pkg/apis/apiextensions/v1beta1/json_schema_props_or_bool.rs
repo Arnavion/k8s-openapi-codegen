@@ -39,3 +39,13 @@ impl crate::serde::Serialize for JSONSchemaPropsOrBool {
         }
     }
 }
+
+#[cfg(feature = "schema")]
+impl crate::Schema for JSONSchemaPropsOrBool {
+    fn schema() -> serde_json::Value {
+        serde_json::json!({
+          "description": "JSONSchemaPropsOrBool represents JSONSchemaProps or a boolean value. Defaults to true for the boolean property.",
+          "type": "object"
+        })
+    }
+}
